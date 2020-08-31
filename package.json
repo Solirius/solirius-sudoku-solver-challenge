@@ -1,0 +1,27 @@
+{
+  "name": "sssc",
+  "version": "1.0.0",
+  "description": "Solirius Sudoku Solver Challenge",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solirius/solirius-sudoku-solver-challenge.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Solirius/solirius-sudoku-solver-challenge/issues"
+  },
+  "homepage": "https://github.com/Solirius/solirius-sudoku-solver-challenge#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "diff": "^4.0.2",
+    "into-stream": "^6.0.0",
+    "neat-csv": "^5.2.0"
+  }
+}
