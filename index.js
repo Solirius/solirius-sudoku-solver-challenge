@@ -19,21 +19,21 @@ async function main() {
 
   const [cli, ...args] = process.argv.slice(2);
   const cmd = spawn(cli, args);
-  let i = 0;
   let errors = 0;
 
   const child = readline.createInterface({ input: cmd.stdout });
 
   child.on('line', data => {
-    if (rows[i]) {
-      if (data.toString() !== rows[i].solutions) {
+    const [id, answer] = data.toString().split(",");
+
+    if (rows[id]) {
+      if (answer !== rows[id].solutions) {
         errors++;
-        console.log(data.toString().red, rows[i].solutions);
+        console.log(answer.red, rows[id].solutions);
       }
       else {
-        console.log(data.toString().green, rows[i].solutions);
+        console.log(answer.green, rows[id].solutions);
       }
-      i++;
     }
   });
 
@@ -50,13 +50,13 @@ async function main() {
     console.error(err);
   });
 
-  intoStream(rows.map(row => row.quizzes + "\n")).pipe(cmd.stdin);
+  intoStream(rows.map((row, i) => `${i},${row.quizzes}\n`)).pipe(cmd.stdin);
 }
 
 function usage() {
-  console.log("Solirius Sudoku Solver Challenge. Usage:");
+  console.log("Solirius Sudoku Solver Challenge.");
   console.log("");
-  console.log("npx sssc [your command]");
+  console.log("Usage: npx sssc [your command]");
   console.log("");
   console.log("e.g. npx sssc java -jar myapp.jar");
 }
