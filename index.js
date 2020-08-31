@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { spawn } = require("child_process");
 const neatCsv = require("neat-csv");
 const fs = require("fs");
@@ -11,7 +13,7 @@ if (!process.argv[2]) {
 }
 
 async function main() {
-  const rows = await neatCsv(fs.createReadStream("examples.csv"));
+  const rows = await neatCsv(fs.createReadStream(__dirname + "/examples.csv"));
   console.time("run");
   console.log("Running: " + process.argv.slice(2));
 
