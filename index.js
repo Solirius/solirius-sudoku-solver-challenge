@@ -20,10 +20,12 @@ async function main() {
   const [cli, ...args] = process.argv.slice(2);
   const cmd = spawn(cli, args);
   let errors = 0;
+  let completed = 0;
 
   const child = readline.createInterface({ input: cmd.stdout });
 
   child.on('line', data => {
+    completed++;
     const [id, answer] = data.toString().split(",");
 
     if (rows[id]) {
@@ -44,6 +46,7 @@ async function main() {
   cmd.on("exit", code => {
     console.timeEnd("run");
     console.log(errors + " errors");
+    console.log(rows.length - completed + " missing");
   });
 
   cmd.on("error", err => {
