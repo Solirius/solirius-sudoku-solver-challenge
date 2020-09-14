@@ -33,9 +33,6 @@ async function main() {
         errors++;
         console.log(answer.red, rows[id].solutions);
       }
-      else {
-        console.log(answer.green, rows[id].solutions);
-      }
     }
   });
 
